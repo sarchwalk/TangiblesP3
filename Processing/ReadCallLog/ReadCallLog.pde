@@ -13,7 +13,7 @@ void setup(){
   printArray(Serial.list());
   
   // IMPORTANT: Verify the port connected to the arduino matches the selection!
- comPort = new Serial(this, Serial.list()[1], 9600);
+ comPort = new Serial(this, Serial.list()[0], 9600);
  background(255,0,0); //Start with a Red background
 }
 
@@ -31,6 +31,10 @@ void mousePressed() {
  
  /*When the background is green, transmit
  text file values to the Arduino */
+ for(int i=0; i< 5; i++) {
+   println(5-i);
+ delay(1000);
+ }
  dLoader=new DataLoader(comPort);
  dLoader.start();
  }else{

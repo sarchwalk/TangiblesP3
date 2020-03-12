@@ -40,7 +40,7 @@ public class DataLoader extends Thread {
        toSend += "<";
        comPort.write(toSend);
        println("Sent: " + toSend);
-       delay(1000);
+       delay(5000);
      }
      
      year = call.getYear();
