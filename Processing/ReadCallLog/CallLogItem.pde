@@ -8,8 +8,7 @@ public class CallLogItem {
   //When the call occurred
   private int callYear; 
   private int callMonth; 
-  private int callDay; 
-  private int callTimeMinute; 
+  private int callDay;  
   
   // What kind of call was it [Dialed/Recieved/Missed]
   private String callType; 
@@ -25,12 +24,9 @@ public class CallLogItem {
     callYear = row.getInt("callYear"); 
     callMonth = row.getInt("callMonth");
     callDay = row.getInt("callDay");
-    //callTimeMinute = row.getInt("callTimeMinute");
     
     callType = row.getString("callLog");
-    duration = row.getInt("durationMinutes");
-    
-    //println(callType + " - " + name + " " + callYear+"-"+callMonth+"-"+callDay+ " + " + callTimeMinute + " (" + duration + ")");
+    duration = row.getInt("durationMinutes"); 
   }
   
   //Getters (Note: row data should be readonly)
@@ -44,12 +40,4 @@ public class CallLogItem {
   public int getCode() {
     return Person.getType(name);
   }
-  
-  // Check if the call was missed by the user or unanswered by the callee
-  public boolean isMissedCall() {
-    boolean missed = callType.toLowerCase().equals("missed");
-    boolean unanswered = (callType.toLowerCase().equals("dialed") && duration < 1);
-    return (missed || unanswered);
-  }
-  
 }
