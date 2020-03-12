@@ -1,10 +1,14 @@
+
+
 /**
  * Code to initialize branch hardware.
  */
 void setupBranches() {
   //TODO: Replace with hardware setup
-  for(int branch = 0; branch < NUM_BRANCHES; branch++) {
-    setupFakeBranch(branch);
+  int defaultGrowth = 100;
+  for(int b = 0; b < NUM_BRANCHES; b++) {
+    pinMode(ledMains[b], OUTPUT);
+    analogWrite(ledMains[b], growthLevels[b]); 
   }
 }
 
@@ -13,7 +17,8 @@ void setupBranches() {
  */
 void grow(int branch, int amount) {
   //TODO: replace with hardware code
-  fakeGrow(branch, amount);
+  int growth = ((amount-1) * 100);
+  analogWrite(ledMains[branch], growth);
 }
 
 /**
@@ -38,29 +43,11 @@ int calcGrowth(int branch, int talkTime) {
    *    Average - between 50% and 150% expected talk time
    *    Amazing - greater than 150% expected talk time
    */
-  if (talkTime < (threshold*0.5) {
+  if (talkTime < (threshold*0.5)) {
     return 1; // Bad
   }
-  if(talkTime < (threshold*1.5) {
+  if(talkTime <= (threshold*1.5)) {
     return 2; // Average
   }
   return 3; // Amazing!
-}
-
-/**
- * TO BE REMOVED
- *  - Functions and hardware details for mocking data interaction via leds -
- */
-
- 
-int ledMains[NUM_BRANCHES] = { 11, 10, 9 };
-
-void setupFakeBranch(int branch) {
-  pinMode(ledMains[branch], OUTPUT);
-  analogWrite(ledMains[branch], 100);
-}
-
-void fakeGrow(int branch, int amount) {
-  int growth = ((amount-1) * 100);
-  analogWrite(ledMains[branch], growth);
 }

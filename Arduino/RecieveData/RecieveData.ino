@@ -8,6 +8,18 @@
 // In Minutes per Month
 int expectedTalkTime[] = { 300, 50, 60 };
 
+/**
+ * TO BE REMOVED
+ *  - Hardware details for mocking data interaction via leds -
+ */
+
+int ledMains[NUM_BRANCHES] = { 11, 10, 9 };
+int growthLevels[] = { 100, 100, 100 };
+
+/**
+ * -------------------------------------------------
+ */
+
 void setup() {
   Serial.begin(9600);
   setupBranches();
